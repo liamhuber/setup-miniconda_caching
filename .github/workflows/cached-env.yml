@@ -71,7 +71,7 @@ jobs:
           key: careful-cache
           lookup-only: true
       - name: Setup empty Mambaforge
-        if: look-for-cache.outputs.cache-hit == 'true'
+        if: steps.look-for-cache.outputs.cache-hit == 'true'
         uses: conda-incubator/setup-miniconda@v3
         with:
           python-version: '3.9'
@@ -80,13 +80,13 @@ jobs:
           activate-environment: anaconda-client-env-CAREFUL
           use-mamba: true
       - name: Load cache
-        if: look-for-cache.outputs.cache-hit == 'true'
+        if: steps.look-for-cache.outputs.cache-hit == 'true'
         uses: actions/cache/restore@v3
         with:
           path: ${{ env.CONDA }}/envs
           key: careful-cache
       - name: Setup Mambaforge with env file
-        if: look-for-cache.outputs.cache-hit != 'true'
+        if: steps.look-for-cache.outputs.cache-hit != 'true'
         uses: conda-incubator/setup-miniconda@v3
         with:
           python-version: '3.9'
@@ -96,7 +96,7 @@ jobs:
           use-mamba: true
           environment-file: ./environment.yml
       - name: Save cache
-        if: look-for-cache.outputs.cache-hit != 'true'
+        if: steps.look-for-cache.outputs.cache-hit != 'true'
         uses: actions/cache/save@v3
         with:
           path: ${{ env.CONDA }}/envs
@@ -119,7 +119,7 @@ jobs:
           key: careful-cache
           lookup-only: true
       - name: Setup empty Mambaforge
-        if: look-for-cache.outputs.cache-hit == 'true'
+        if: steps.look-for-cache.outputs.cache-hit == 'true'
         uses: conda-incubator/setup-miniconda@v3
         with:
           python-version: '3.9'
@@ -128,13 +128,13 @@ jobs:
           activate-environment: anaconda-client-env-CAREFUL
           use-mamba: true
       - name: Load cache
-        if: look-for-cache.outputs.cache-hit == 'true'
+        if: steps.look-for-cache.outputs.cache-hit == 'true'
         uses: actions/cache/restore@v3
         with:
           path: ${{ env.CONDA }}/envs
           key: careful-cache
       - name: Setup Mambaforge with env file
-        if: look-for-cache.outputs.cache-hit != 'true'
+        if: steps.look-for-cache.outputs.cache-hit != 'true'
         uses: conda-incubator/setup-miniconda@v3
         with:
           python-version: '3.9'
@@ -144,7 +144,7 @@ jobs:
           use-mamba: true
           environment-file: ./environment.yml
       - name: Save cache
-        if: look-for-cache.outputs.cache-hit != 'true'
+        if: steps.look-for-cache.outputs.cache-hit != 'true'
         uses: actions/cache/save@v3
         with:
           path: ${{ env.CONDA }}/envs
